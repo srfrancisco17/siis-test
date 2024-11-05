@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\TriageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,6 @@ Route::put('/ideas/update/{idea}', [IdeaController::class, 'update'])->name('ide
 Route::get('/ideas/{idea}', [IdeaController::class, 'show'])->name('idea.show');
 Route::delete('/ideas/{idea}', [IdeaController::class, 'delete'])->name('idea.delete');
 Route::put('/ideas/{idea}', [IdeaController::class, 'synchronizeLikes'])->name('idea.like');
+
+
+Route::get('/triage', [TriageController::class, 'index'])->name('triage.index');

@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('idea.index')" :active="request()->routeIs('idea.index')">
                         Ideas
                     </x-nav-link>
+                    <x-nav-link :href="route('triage.index')" :active="request()->routeIs('triage.index')">
+                        Triage
+                    </x-nav-link>
                 </div>
             </div>
 
