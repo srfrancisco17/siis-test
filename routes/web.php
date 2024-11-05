@@ -44,3 +44,7 @@ Route::put('/ideas/update/{idea}', [IdeaController::class, 'update'])->name('ide
 Route::get('/ideas/{idea}', [IdeaController::class, 'show'])->name('idea.show');
 Route::delete('/ideas/{idea}', [IdeaController::class, 'delete'])->name('idea.delete');
 Route::put('/ideas/{idea}', [IdeaController::class, 'synchronizeLikes'])->name('idea.like');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
