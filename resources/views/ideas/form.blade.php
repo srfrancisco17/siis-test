@@ -1,35 +1,44 @@
-<x-app-layout>
-  <div class="py-12">
-      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-              <div class="p-6 text-gray-900 dark:text-gray-100">
-                  <form method="POST" action="{{empty($idea) ? route('idea.store') : route('idea.update', $idea)}}">
-                      @csrf
+<?php
+    $isNew = empty($idea);
+    $title = $isNew ? "Crear" : "Editar";
+?>
 
-                      @if (empty($idea))
-                        @method('post')
-                      @else
-                        @method('put')
-                      @endif
+@extends('adminlte::page')
+
+@section('title', $title.' Ideas')
+
+@section('content_header')
+    <h1>{{$title}} Ideas</h1>
+@stop
+
+@section('content')
+
+<div class="card">
+    <div class="card-body">
+        <form method="POST" action="{{empty($idea) ? route('idea.store') : route('idea.update', $idea)}}">
+            @csrf
+            @if (empty($idea))
+              @method('post')
+            @else
+              @method('put')
+            @endif
+            <div class="form-group">
+                <label for="title">Titulo</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Titulo de tu idea" value="{{old('title', $idea->title ?? '')}}">
+                <x-input-error :messages="$errors->get('title')" class="mt-2" />
+            </div>
+            <div class="form-group">
+                <label for="description">Descripcion</label>
+                <textarea class="form-control" id="description" name="description" rows="3" placeholder="Escribe una descripcion para la idea">{{ old('description', $idea->description ?? '') }}</textarea>
+                <x-input-error :messages="$errors->get('description')" class="mt-2" />
+            </div>
+
+            <button type="submit" class="btn btn-{{$isNew ? "success" : "primary"}}">{{$title}}</button> 
+
+            <a href="{{route('idea.index')}}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
 
 
-                      <x-text-input id="name" class="block mt-1 w-full" type="text" name="title" :value="old('title', $idea->title ?? '')"  placeholder="Ingresa título" />
-                      <x-input-error :messages="$errors->get('title')" class="mt-2" />
-
-                      <textarea
-                          name="description"
-                          placeholder="Ingrese su descripcion ..."
-                          class="mt-2 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-500 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
-                      >{{ old('description', $idea->description ?? '') }}</textarea>
-                      <x-input-error :messages="$errors->get('description')" class="mt-2" />
-
-                      <div class="mt-4 space-x-8">
-                          <x-primary-button>Guardar</x-primary-button>
-                          <a href="{{route('idea.index')}}" class="dark:text-gray-100">Cancelar</a>
-                      </div>
-                  </form>
-              </div>
-          </div>
-      </div>
-  </div>
-</x-app-layout>
+@stop

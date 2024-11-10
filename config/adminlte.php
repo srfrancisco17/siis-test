@@ -327,17 +327,18 @@ return [
             'label' => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'Modulos'],
         [
-            'text' => 'profile',
-            'url' => 'admin/settings',
+            'text' => 'Ideas',
+            'url' => 'ideas/',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
+            'text' => 'Triage',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
+        /*
         [
             'text' => 'multilevel',
             'icon' => 'fas fa-fw fa-share',
@@ -376,6 +377,7 @@ return [
                 ],
             ],
         ],
+        */
         ['header' => 'labels'],
         [
             'text' => 'important',
