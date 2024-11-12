@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\TriageController;
+use App\Livewire\Counter;
 
 
 Route::get('/', function () {
@@ -36,8 +37,11 @@ Route::get('/ideas/{idea}', [IdeaController::class, 'show'])->name('idea.show');
 Route::delete('/ideas/{idea}', [IdeaController::class, 'delete'])->name('idea.delete');
 Route::put('/ideas/{idea}', [IdeaController::class, 'synchronizeLikes'])->name('idea.like');
 
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/triage', [TriageController::class, 'index'])->name('triage.index');
+
+Route::get('/counter', Counter::class);
+
+Auth::routes();
